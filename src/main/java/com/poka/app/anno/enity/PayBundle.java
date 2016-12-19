@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
@@ -32,6 +30,7 @@ public class PayBundle implements Serializable {
 	private String currencyId;
 	private Integer currencyKind;
 	private Double bundleMoney;	
+//	private Integer bundleMoney;	
 	private String bagId;
 	private String checkId;
 	private String empId;

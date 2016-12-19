@@ -5,12 +5,11 @@ import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Service;
 
-import com.poka.app.anno.enity.BranchInfo;
-import com.poka.app.anno.enity.BranchInfoPK;
 import com.poka.app.anno.enity.PerInfo;
+import com.poka.app.anno.enity.PerInfoPK;
 
 @Service
-public class PerInfoService extends BaseService<PerInfo, String> {
+public class PerInfoService extends BaseService<PerInfo, PerInfoPK> {
 
 	public int getPerinfoCount(){
 		String hql = "select count(*)  from PerInfo";
@@ -25,10 +24,12 @@ public class PerInfoService extends BaseService<PerInfo, String> {
 		return (List<PerInfo>)query.list();
 	}
 	
-	public PerInfo getPerinfo(String pk){
-		String hql = "from PerInfo p where p.bankno = :percode";
+	public PerInfo getPerinfo(PerInfoPK pk){
+		String hql = "from PerInfo p where p.percode = :percode and p.bankno = :bankno and p.agencyno = :agencyno";
 		Query query = createQuery(hql);
-		query.setParameter("percode", pk);
+		query.setParameter("percode", pk.getPercode());
+		query.setParameter("bankno", pk.getBankno());
+		query.setParameter("agencyno", pk.getAgencyno());
 		return (PerInfo)query.uniqueResult();
 	}
 }
