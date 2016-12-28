@@ -10,6 +10,7 @@ import com.poka.app.anno.bussiness.AppointmentBusiness;
 import com.poka.app.anno.bussiness.BagInfoBusiness;
 import com.poka.app.anno.bussiness.BankCheckDailyRepBakBusiness;
 import com.poka.app.anno.bussiness.BankCheckDailyRepBusiness;
+import com.poka.app.anno.bussiness.LanBiaoBusiness;
 import com.poka.app.anno.bussiness.NetCheckDailyRepBakBusiness;
 import com.poka.app.anno.bussiness.NetCheckDailyRepBusiness;
 import com.poka.app.anno.bussiness.PaymentBusiness;
@@ -19,10 +20,11 @@ import com.poka.app.anno.bussiness.SendFileBusiness;
 import com.poka.app.anno.enity.BagInfo;
 import com.poka.app.anno.enity.BankCheckDailyRepBak;
 import com.poka.app.anno.enity.BankCheckDailyRepList;
+import com.poka.app.anno.enity.BusinessListCore;
+import com.poka.app.anno.enity.BusinessListDetail;
 import com.poka.app.anno.enity.NetCheckDailyRepBak;
 import com.poka.app.anno.enity.NetCheckDailyRepList;
 import com.poka.app.anno.enity.QryApply;
-import com.poka.app.anno.enity.SendFile;
 import com.poka.app.pb.ws.IPBPospSW;
 import com.poka.app.vo.AppointmentVo;
 import com.poka.app.vo.PaymentVo;
@@ -39,7 +41,7 @@ public class PBPospSW implements IPBPospSW {
 	private NetCheckDailyRepBusiness netCheckDailyRepBussiness;
 	private NetCheckDailyRepBakBusiness netCheckDailyRepBakBussiness;
 	private BagInfoBusiness bagInfoBusiness; 
-	private SendFileBusiness sendFileBusiness;
+	private LanBiaoBusiness lanBiaoBusiness;
 	
 
 	@Autowired
@@ -48,8 +50,8 @@ public class PBPospSW implements IPBPospSW {
 	}
 	
 	@Autowired
-	public void setSendFileBusiness(SendFileBusiness sendFileBusiness) {
-		this.sendFileBusiness = sendFileBusiness;
+	public void setLanBiaoBusiness(LanBiaoBusiness lanBiaoBusiness) {
+		this.lanBiaoBusiness = lanBiaoBusiness;
 	}
 	
 	@Autowired
@@ -160,6 +162,18 @@ public class PBPospSW implements IPBPospSW {
 	public boolean sendBankCheckDailyRepList(List<BankCheckDailyRepList> bankCheckDailyRepListFlow) {
 		// TODO Auto-generated method stub
 		return bankCheckDailyRepBakBussiness.getBankCheckDailyRepList(bankCheckDailyRepListFlow);
+	}
+
+	@Override
+	public boolean sendBusinessListCoreInfo(List<BusinessListCore> businessListCoreList) {
+		// TODO Auto-generated method stub
+		return lanBiaoBusiness.getBusinessListCoreInfo(businessListCoreList);
+	}
+
+	@Override
+	public boolean sendBusinessListDetailInfo(List<BusinessListDetail> businessListDetailList) {
+		// TODO Auto-generated method stub
+		return lanBiaoBusiness.getBusinessListDetailInfo(businessListDetailList);
 	}
 
 }
