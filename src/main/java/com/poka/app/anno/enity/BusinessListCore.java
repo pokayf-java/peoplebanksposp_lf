@@ -7,6 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.poka.app.util.TimestampAdapter;
 
 /**
  * 1.1	核心系统存取款业务信息
@@ -31,7 +34,7 @@ public class BusinessListCore {
 	private Character pubOrPri;			//对公对私类型(1:对公 2:对私)
 	private Character channel;			//渠道类型
 	private String remark;				//备注
-	private Timestamp inserDate;		//插入时间
+	private Timestamp insertDate;		//插入时间
 	
 	@Id
 	@Column(name = "ID")
@@ -67,10 +70,11 @@ public class BusinessListCore {
 	}
 	
 	@Column(name = "BUSINESSDATE")
+	@XmlJavaTypeAdapter(TimestampAdapter.class)
 	public Timestamp getBusinessDate() {
 		return businessDate;
 	}
-	public void setBusinessDate(Timestamp businessDate) {
+	public void setBusinessDate(@XmlJavaTypeAdapter(TimestampAdapter.class)Timestamp businessDate) {
 		this.businessDate = businessDate;
 	}
 	
@@ -146,12 +150,13 @@ public class BusinessListCore {
 		this.remark = remark;
 	}
 	
-	@Column(name = "INSERDATE")
-	public Timestamp getInserDate() {
-		return inserDate;
+	@Column(name = "INSERTDATE")
+	@XmlJavaTypeAdapter(TimestampAdapter.class)
+	public Timestamp getInsertDate() {
+		return insertDate;
 	}
-	public void setInserDate(Timestamp inserDate) {
-		this.inserDate = inserDate;
+	public void setInsertDate(@XmlJavaTypeAdapter(TimestampAdapter.class)Timestamp insertDate) {
+		this.insertDate = insertDate;
 	}
 	
 	@Column(name = "ZHAIYOMS",length = 50)

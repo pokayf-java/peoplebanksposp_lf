@@ -7,6 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.poka.app.util.TimestampAdapter;
 
 /**
  * 1.3	业务信息券别明细表
@@ -19,7 +22,7 @@ public class BusinessListDetail {
 	private String id;					//内部唯一流水号
 	private BigDecimal monval;			//面值
 	private Integer records;			//张数
-	private Timestamp inserDate;		//插入时间
+	private Timestamp insertDate;		//插入时间
 	
 	@Id
 	@Column(name = "ID")
@@ -30,12 +33,13 @@ public class BusinessListDetail {
 		this.id = id;
 	}
 	
-	@Column(name = "INSERDATE")
-	public Timestamp getInserDate() {
-		return inserDate;
+	@Column(name = "INSERTDATE")
+	@XmlJavaTypeAdapter(TimestampAdapter.class)
+	public Timestamp getInsertDate() {
+		return insertDate;
 	}
-	public void setInserDate(Timestamp inserDate) {
-		this.inserDate = inserDate;
+	public void setInsertDate(@XmlJavaTypeAdapter(TimestampAdapter.class)Timestamp insertDate) {
+		this.insertDate = insertDate;
 	}
 	
 	@Column(name = "MONVAL")
