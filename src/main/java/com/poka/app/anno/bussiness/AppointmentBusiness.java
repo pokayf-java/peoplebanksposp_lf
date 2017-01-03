@@ -14,6 +14,7 @@ import com.poka.app.cb.ws.ICBPospSW;
 import com.poka.app.enumtype.OrderType;
 import com.poka.app.enumtype.StateType;
 import com.poka.app.util.CxfUtil;
+import com.poka.app.util.PokaDateUtil;
 import com.poka.app.vo.AppointmenResult;
 import com.poka.app.vo.AppointmentVo;
 
@@ -55,14 +56,14 @@ public class AppointmentBusiness {
 			AppointmenResult vo = orderInfoService.getAppointmenResult(orderId);
 			
 			if(vo.getBankId() == null){
-				logger.info("处理订单号:"+orderId+" 失败,缺少银行号!");
+				logger.info("处理订单号:"+orderId+" 失败,缺少银行号...**"+PokaDateUtil.getNow()+"**");
 				orderInfoService.updateOrderInfoState(order, StateType.ERROR);
 				continue;
 			}
 			String bankIp  = bankInfoService.getBankIp(vo.getBankId().trim());
 			
 			if(bankIp == null){
-				logger.info("处理订单号:"+orderId+" 失败,缺少银行IP!");
+				logger.info("处理订单号:"+orderId+" 失败,缺少银行IP...**"+PokaDateUtil.getNow()+"**");
 				orderInfoService.updateOrderInfoState(order, StateType.ERROR);
 				continue;
 			}
@@ -74,14 +75,14 @@ public class AppointmentBusiness {
 			try{
 				result = service.handleAppointmen(vo);
 			}catch(Exception ex){
-				logger.info("连接服务器失败!");
+				logger.info("连接服务器失败...**"+PokaDateUtil.getNow()+"**");
 			}
 			if (result) {
-				logger.info("处理預約取款结果订单:" + orderId+"  成功");
+				logger.info("处理預約取款结果订单:" + orderId+"  成功...**"+PokaDateUtil.getNow()+"**");
 				this.orderInfoService.updateOrderInfoState(order,
 						StateType.SENDED);
 			}else{
-				logger.info("处理預約取款结果订单:" + orderId+"  失败");
+				logger.info("处理預約取款结果订单:" + orderId+"  失败...**"+PokaDateUtil.getNow()+"**");
 			}
 			try {
 				Thread.sleep(50000);
@@ -93,7 +94,7 @@ public class AppointmentBusiness {
 	
 	
 	public boolean makeAppointment(AppointmentVo appointment){	
-		logger.info("正在处理预约取款信息");
+		logger.info("正在处理预约取款信息...**"+PokaDateUtil.getNow()+"**");
 		return orderInfoService.saveAppointmentVo(appointment);
 	}
 }

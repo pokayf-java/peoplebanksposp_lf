@@ -13,6 +13,7 @@ import com.poka.app.anno.base.service.impl.BusinessListCoreService;
 import com.poka.app.anno.base.service.impl.BusinessListDetailService;
 import com.poka.app.anno.enity.BusinessListCore;
 import com.poka.app.anno.enity.BusinessListDetail;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class LanBiaoBusiness {
@@ -41,7 +42,7 @@ public class LanBiaoBusiness {
 			}
 			numSize = dataList.size();
 		}
-		logger.info("网点("+netNo+")核心业务数据同步成功！("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+		logger.info("网点("+netNo+")核心业务数据同步成功...**"+PokaDateUtil.getNow()+"**");
 		logger.info("共计"+numSize +"条.");
 		return true;
 	}
@@ -54,7 +55,7 @@ public class LanBiaoBusiness {
 			}
 			numSize = dataList.size();
 		}
-		logger.info("核心业务信息券别明细同步成功！("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+		logger.info("核心业务信息券别明细同步成功...**"+PokaDateUtil.getNow()+"**");
 		logger.info("共计"+numSize +"条.");
 		return true;
 	}

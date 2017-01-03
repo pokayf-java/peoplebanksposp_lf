@@ -1,8 +1,6 @@
 package com.poka.app.anno.bussiness;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.poka.app.anno.base.service.impl.BankCheckDailyRepService;
 import com.poka.app.anno.enity.BankCheckDailyRep;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class BankCheckDailyRepBusiness {
@@ -34,7 +33,7 @@ public class BankCheckDailyRepBusiness {
 			}
 		}
 		
-		logger.info("银行("+bankNo+")日结数据同步成功！("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+		logger.info("银行("+bankNo+")日结数据同步成功...**"+PokaDateUtil.getNow()+"**");
 		return true;
 	}
 }

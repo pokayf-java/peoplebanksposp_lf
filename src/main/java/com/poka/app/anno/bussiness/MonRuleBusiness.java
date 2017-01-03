@@ -13,6 +13,7 @@ import com.poka.app.anno.enity.BankInfo;
 import com.poka.app.anno.enity.MonRule;
 import com.poka.app.cb.ws.ICBPospSW;
 import com.poka.app.util.CxfUtil;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class MonRuleBusiness {
@@ -61,13 +62,13 @@ public class MonRuleBusiness {
 					try {
 						result = service.sendMonRuleData(monRuleList);
 					} catch (Exception ex) {
-						logger.info("连接服务器失败!");
+						logger.info("连接服务器失败...**"+PokaDateUtil.getNow()+"**");
 					}
 					if (result) {
-						logger.info("ip:" + bankIp + "可疑币数据同步成功");
+						logger.info("ip:" + bankIp + "可疑币数据同步成功...**"+PokaDateUtil.getNow()+"**");
 						logger.info("总计:" + monRuleList.size() + "条");
 					} else {
-						logger.info("ip:" + bankIp + "可疑币数据同步失败");
+						logger.info("ip:" + bankIp + "可疑币数据同步失败...**"+PokaDateUtil.getNow()+"**");
 					}
 					try {
 						Thread.sleep(5000);

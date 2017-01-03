@@ -14,6 +14,7 @@ import com.poka.app.anno.base.service.impl.NetCheckDailyRepListService;
 import com.poka.app.anno.enity.NetCheckDailyRepBak;
 import com.poka.app.anno.enity.NetCheckDailyRepList;
 import com.poka.app.util.ConstantUtil;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class NetCheckDailyRepBakBusiness {
@@ -43,7 +44,7 @@ public class NetCheckDailyRepBakBusiness {
 					netCheckDailyRepListService.save(netCheckDailyRepListObj);
 				}
 			}
-			logger.info("网点("+netNo+")日结流水同步成功...("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+			logger.info("网点("+netNo+")日结流水同步成功...**"+PokaDateUtil.getNow()+"**");
 			logger.info("共计"+netListData.size()+"条.");
 			return true;
 		} else {

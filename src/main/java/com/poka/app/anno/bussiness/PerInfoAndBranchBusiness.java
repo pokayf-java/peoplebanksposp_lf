@@ -18,6 +18,7 @@ import com.poka.app.anno.enity.BranchInfoPK;
 import com.poka.app.anno.enity.PerInfo;
 import com.poka.app.anno.enity.PerInfoPK;
 import com.poka.app.util.ConstantUtil;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class PerInfoAndBranchBusiness {
@@ -97,7 +98,7 @@ public class PerInfoAndBranchBusiness {
 
 			}
 			perInfoService.flush();
-			logger.info("机具表数据同步成功！(" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + ")");
+			logger.info("机具表数据同步成功...**"+PokaDateUtil.getNow()+"**");
 			return true;
 		} else {
 			return false;

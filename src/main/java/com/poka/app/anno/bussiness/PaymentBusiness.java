@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.poka.app.anno.base.service.impl.OrderInfoService;
+import com.poka.app.util.PokaDateUtil;
 import com.poka.app.vo.PaymentVo;
 
 @Component
@@ -20,7 +21,7 @@ public class PaymentBusiness {
 	}
 	
 	public boolean makePayment(PaymentVo payment){
-		logger.info("正在处理交款信息");
+		logger.info("正在处理交款信息...**"+PokaDateUtil.getNow()+"**");
 		return orderInfoService.savePaymentVo(payment);
 	}
 }

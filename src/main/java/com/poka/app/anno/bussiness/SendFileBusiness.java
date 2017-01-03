@@ -14,6 +14,7 @@ import com.poka.app.anno.base.service.impl.SendFileService;
 import com.poka.app.anno.enity.SendFile;
 import com.poka.app.cb.ws.ICBPospSW;
 import com.poka.app.util.CxfUtil;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class SendFileBusiness {
@@ -45,14 +46,14 @@ public class SendFileBusiness {
 			try {
 				result = service.sendFileData(sendFileList);
 			} catch (Exception ex) {
-				logger.info("连接服务器失败...");
+				logger.info("连接服务器失败...**"+PokaDateUtil.getNow()+"**");
 				return false;
 			}
 			if (result) {
-				logger.info("SendFile 数据同步成功...("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+				logger.info("SendFile 数据同步成功...**"+PokaDateUtil.getNow()+"**");
 				logger.info("共计" + sendFileList.size() + "条.");
 			} else {
-				logger.info("SendFile 数据同步失败...("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+				logger.info("SendFile 数据同步失败...**"+PokaDateUtil.getNow()+"**");
 				return false;
 			}
 			try {

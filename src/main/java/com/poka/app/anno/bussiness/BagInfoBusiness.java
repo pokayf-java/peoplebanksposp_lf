@@ -1,7 +1,5 @@
 package com.poka.app.anno.bussiness;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.poka.app.anno.base.service.impl.BagInfoService;
 import com.poka.app.anno.enity.BagInfo;
 import com.poka.app.util.ConstantUtil;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class BagInfoBusiness {
@@ -37,7 +36,7 @@ public class BagInfoBusiness {
 					bagInfoService.save(bagInfo);
 				}
 			}
-			logger.info("横向调拨数据同步成功("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+			logger.info("横向调拨数据同步成功...**"+PokaDateUtil.getNow()+"**");
 			return true;
 		} else {
 			return false;

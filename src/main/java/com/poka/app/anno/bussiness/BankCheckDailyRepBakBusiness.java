@@ -1,8 +1,6 @@
 package com.poka.app.anno.bussiness;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,6 +13,7 @@ import com.poka.app.anno.base.service.impl.BankCheckDailyRepListService;
 import com.poka.app.anno.enity.BankCheckDailyRepBak;
 import com.poka.app.anno.enity.BankCheckDailyRepList;
 import com.poka.app.util.ConstantUtil;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class BankCheckDailyRepBakBusiness {
@@ -44,7 +43,7 @@ public class BankCheckDailyRepBakBusiness {
 					bankCheckDailyRepBakService.save(bankCheckDailyRepBak);
 				}
 			}
-			logger.info("银行("+bankNo+")日结数据同步成功...("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+			logger.info("银行("+bankNo+")日结数据同步成功...**"+PokaDateUtil.getNow()+"**");
 			logger.info("共计"+bankListData.size()+"条.");
 			return true;
 		} else {
@@ -62,7 +61,7 @@ public class BankCheckDailyRepBakBusiness {
 					bankCheckDailyRepListService.save(bankCheckDailyRepListObj);
 				}
 			}
-			logger.info("银行("+bankNo+")日结流水同步成功...("+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+")");
+			logger.info("银行("+bankNo+")日结流水同步成功...**"+PokaDateUtil.getNow()+"**");
 			logger.info("共计"+bankListData.size()+"条.");
 			return true;
 		} else {

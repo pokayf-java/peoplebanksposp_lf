@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.poka.app.anno.base.service.impl.OrderInfoService;
 import com.poka.app.anno.enity.QryApply;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
 public class QryApplyBusiness {
@@ -20,7 +21,7 @@ public class QryApplyBusiness {
 	}
 	
 	public boolean makeQryApply(QryApply qryApply){
-		logger.info("正在处理查询申请信息");
+		logger.info("正在处理查询申请信息...**"+PokaDateUtil.getNow()+"**");
 		return orderInfoService.saveQryApply(qryApply);
 	}
 }
