@@ -48,27 +48,29 @@ public class MonRuleBusiness {
 		List<BankInfo> bankInfoList = bankInfoService.getBankInfoList();
 		if (bankInfoList.size() > 0) {
 			for (int i = 0; i < bankInfoList.size(); i++) {
-
 				BankInfo bankInfo = bankInfoList.get(i);
 				String bankIp = bankInfo.getIpAddr().trim();
-
+				String bankName = bankInfo.getBankName().trim();
+				if (null == bankIp || "".equals(bankIp) || "null".equals(bankIp)) {
+					return;
+				}
 				ICBPospSW service = cxfUtil.getCxfClient(ICBPospSW.class, cxfUtil.getUrl(bankIp, cxfUtil.getPort()));
 				cxfUtil.recieveTimeOutWrapper(service);
 
 				boolean result = Boolean.FALSE;
 				List<MonRule> monRuleList = monRuleService.getMonRuleList();
-				
+
 				if (null != monRuleList && monRuleList.size() > 0) {
 					try {
 						result = service.sendMonRuleData(monRuleList);
 					} catch (Exception ex) {
-						logger.info("连接服务器失败...**"+PokaDateUtil.getNow()+"**");
+						logger.info("连接服务器失败...**" + PokaDateUtil.getNow() + "**");
 					}
 					if (result) {
-						logger.info("ip:" + bankIp + "可疑币数据同步成功...**"+PokaDateUtil.getNow()+"**");
-						logger.info("总计:" + monRuleList.size() + "条");
+						logger.info("银行:[" + bankName + "] 可疑币数据下发成功...**" + PokaDateUtil.getNow() + "**");
+						logger.info("总计:[" + monRuleList.size() + "]条");
 					} else {
-						logger.info("ip:" + bankIp + "可疑币数据同步失败...**"+PokaDateUtil.getNow()+"**");
+						logger.info("ip:[" + bankIp + "] 可疑币数据下发失败...**" + PokaDateUtil.getNow() + "**");
 					}
 					try {
 						Thread.sleep(5000);

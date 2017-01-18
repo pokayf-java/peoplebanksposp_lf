@@ -31,16 +31,16 @@ public class LanBiaoBusiness {
 	}
 
 	public boolean getBusinessListCoreInfo(List<BusinessListCore> dataList) {
-		String netNo = "";
+		String bankNo = "";
 		Integer numSize = 0; 
 		if (null != dataList && dataList.size() > 0) {
+			bankNo = dataList.get(0).getBankNo();
 			for (BusinessListCore businessListCore : dataList) {
-				netNo = businessListCore.getNetNo();
 				businessListCoreService.save(businessListCore);
 			}
 			numSize = dataList.size();
 		}
-		logger.info("网点("+netNo+")核心业务数据同步成功...**"+PokaDateUtil.getNow()+"**");
+		logger.info("银行("+bankNo+")核心业务数据同步成功...**"+PokaDateUtil.getNow()+"**");
 		logger.info("共计"+numSize +"条.");
 		return true;
 	}

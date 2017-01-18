@@ -72,6 +72,11 @@ public interface IPBPospSW {
 	@WebMethod(operationName = "sendBusinessListDetailInfo")
 	@WebResult(name = "result")
 	public boolean sendBusinessListDetailInfo(@WebParam(name = "businessListDetailList") List<BusinessListDetail> businessListDetailList);
+
+	/* 传递信息公共接口 */
+	@WebMethod(operationName = "sendPublicInfoMethod")
+	@WebResult(name = "result")
+	public boolean sendPublicInfo(@WebParam(name = "sendPublicInfoList") List<?> sendPublicInfoList);
 	
 	
 }

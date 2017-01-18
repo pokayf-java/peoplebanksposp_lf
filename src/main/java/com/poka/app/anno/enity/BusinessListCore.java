@@ -30,7 +30,7 @@ public class BusinessListCore {
 	private String zhaiYoms;			//摘要描述
 	private String accountNo;			//账号
 	private String accountName;			//账号名称
-	private String accounType;			//账号类型
+	private String accountType;			//账号类型
 	private Character pubOrPri;			//对公对私类型(1:对公 2:对私)
 	private Character channel;			//渠道类型
 	private String remark;				//备注
@@ -118,12 +118,12 @@ public class BusinessListCore {
 		this.accountName = accountName;
 	}
 	
-	@Column(name = "ACCOUNTYPE",length = 2)
-	public String getAccounType() {
-		return accounType;
+	@Column(name = "ACCOUNTTYPE",length = 2)
+	public String getAccountType() {
+		return accountType;
 	}
-	public void setAccounType(String accounType) {
-		this.accounType = accounType;
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 	
 	@Column(name = "PUBORPRI",length = 1)

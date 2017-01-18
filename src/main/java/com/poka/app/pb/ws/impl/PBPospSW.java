@@ -6,6 +6,7 @@ import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.poka.app.anno.bussiness.ATMJiaChBusiness;
 import com.poka.app.anno.bussiness.AppointmentBusiness;
 import com.poka.app.anno.bussiness.BagInfoBusiness;
 import com.poka.app.anno.bussiness.BankCheckDailyRepBakBusiness;
@@ -16,12 +17,12 @@ import com.poka.app.anno.bussiness.NetCheckDailyRepBusiness;
 import com.poka.app.anno.bussiness.PaymentBusiness;
 import com.poka.app.anno.bussiness.PerInfoAndBranchBusiness;
 import com.poka.app.anno.bussiness.QryApplyBusiness;
-import com.poka.app.anno.bussiness.SendFileBusiness;
 import com.poka.app.anno.enity.BagInfo;
 import com.poka.app.anno.enity.BankCheckDailyRepBak;
 import com.poka.app.anno.enity.BankCheckDailyRepList;
 import com.poka.app.anno.enity.BusinessListCore;
 import com.poka.app.anno.enity.BusinessListDetail;
+import com.poka.app.anno.enity.MoneyOut;
 import com.poka.app.anno.enity.NetCheckDailyRepBak;
 import com.poka.app.anno.enity.NetCheckDailyRepList;
 import com.poka.app.anno.enity.QryApply;
@@ -42,11 +43,17 @@ public class PBPospSW implements IPBPospSW {
 	private NetCheckDailyRepBakBusiness netCheckDailyRepBakBussiness;
 	private BagInfoBusiness bagInfoBusiness; 
 	private LanBiaoBusiness lanBiaoBusiness;
+	private ATMJiaChBusiness atmJiaChBusiness;
+	
 	
 
 	@Autowired
 	public void setBankCheckDailyRepBakBussiness(BankCheckDailyRepBakBusiness bankCheckDailyRepBakBussiness) {
 		this.bankCheckDailyRepBakBussiness = bankCheckDailyRepBakBussiness;
+	}
+	@Autowired
+	public void setATMJiaChBusiness(ATMJiaChBusiness atmJiaChBusiness) {
+		this.atmJiaChBusiness = atmJiaChBusiness;
 	}
 	
 	@Autowired
@@ -174,6 +181,11 @@ public class PBPospSW implements IPBPospSW {
 	public boolean sendBusinessListDetailInfo(List<BusinessListDetail> businessListDetailList) {
 		// TODO Auto-generated method stub
 		return lanBiaoBusiness.getBusinessListDetailInfo(businessListDetailList);
+	}
+
+	@Override
+	public boolean sendPublicInfo(List<?> sendPublicInfoList) {
+		return atmJiaChBusiness.getMoneyOutInfo((List<MoneyOut>) sendPublicInfoList);
 	}
 
 }
