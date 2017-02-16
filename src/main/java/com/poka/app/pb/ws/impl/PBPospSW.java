@@ -6,11 +6,13 @@ import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.poka.app.anno.bussiness.ATMJiaChBusiness;
+import com.poka.app.anno.bussiness.NetPeiChaoBusiness;
 import com.poka.app.anno.bussiness.AppointmentBusiness;
+import com.poka.app.anno.bussiness.AtmJiaChaoBusiness;
 import com.poka.app.anno.bussiness.BagInfoBusiness;
 import com.poka.app.anno.bussiness.BankCheckDailyRepBakBusiness;
 import com.poka.app.anno.bussiness.BankCheckDailyRepBusiness;
+import com.poka.app.anno.bussiness.ChaoXJiaChaoBusiness;
 import com.poka.app.anno.bussiness.LanBiaoBusiness;
 import com.poka.app.anno.bussiness.NetCheckDailyRepBakBusiness;
 import com.poka.app.anno.bussiness.NetCheckDailyRepBusiness;
@@ -20,8 +22,10 @@ import com.poka.app.anno.bussiness.QryApplyBusiness;
 import com.poka.app.anno.enity.BagInfo;
 import com.poka.app.anno.enity.BankCheckDailyRepBak;
 import com.poka.app.anno.enity.BankCheckDailyRepList;
+import com.poka.app.anno.enity.BundleInfo;
 import com.poka.app.anno.enity.BusinessListCore;
 import com.poka.app.anno.enity.BusinessListDetail;
+import com.poka.app.anno.enity.MonBoxAddMon;
 import com.poka.app.anno.enity.MoneyOut;
 import com.poka.app.anno.enity.NetCheckDailyRepBak;
 import com.poka.app.anno.enity.NetCheckDailyRepList;
@@ -43,17 +47,30 @@ public class PBPospSW implements IPBPospSW {
 	private NetCheckDailyRepBakBusiness netCheckDailyRepBakBussiness;
 	private BagInfoBusiness bagInfoBusiness; 
 	private LanBiaoBusiness lanBiaoBusiness;
-	private ATMJiaChBusiness atmJiaChBusiness;
+	private NetPeiChaoBusiness netPeiChaoBusiness;
+	private AtmJiaChaoBusiness atmJiaChaoBusiness;
+	private ChaoXJiaChaoBusiness chaoXJiaChaoBusiness;
 	
 	
 
 	@Autowired
+	public void setAtmJiaChaoBusiness(AtmJiaChaoBusiness atmJiaChaoBusiness) {
+		this.atmJiaChaoBusiness = atmJiaChaoBusiness;
+	}
+	
+	@Autowired
+	public void setChaoXJiaChaoBusiness(ChaoXJiaChaoBusiness chaoXJiaChaoBusiness) {
+		this.chaoXJiaChaoBusiness = chaoXJiaChaoBusiness;
+	}
+	
+	@Autowired
 	public void setBankCheckDailyRepBakBussiness(BankCheckDailyRepBakBusiness bankCheckDailyRepBakBussiness) {
 		this.bankCheckDailyRepBakBussiness = bankCheckDailyRepBakBussiness;
 	}
+	
 	@Autowired
-	public void setATMJiaChBusiness(ATMJiaChBusiness atmJiaChBusiness) {
-		this.atmJiaChBusiness = atmJiaChBusiness;
+	public void setNetPeiChaoBusiness(NetPeiChaoBusiness netPeiChaoBusiness) {
+		this.netPeiChaoBusiness = netPeiChaoBusiness;
 	}
 	
 	@Autowired
@@ -184,8 +201,18 @@ public class PBPospSW implements IPBPospSW {
 	}
 
 	@Override
-	public boolean sendPublicInfo(List<?> sendPublicInfoList) {
-		return atmJiaChBusiness.getMoneyOutInfo((List<MoneyOut>) sendPublicInfoList);
+	public boolean sendMoneyOutInfo(List<MoneyOut> sendMoneyOutInfoList) {
+		return netPeiChaoBusiness.getMoneyOutInfo(sendMoneyOutInfoList);
+	}
+	@Override
+	public boolean sendMonBoxAddMonInfo(List<MonBoxAddMon> sendMonBoxAddMonInfoList) {
+		// TODO Auto-generated method stub
+		return chaoXJiaChaoBusiness.getMonBoxAddMonInfo(sendMonBoxAddMonInfoList);
+	}
+	@Override
+	public boolean sendBundleInfo(List<BundleInfo> sendBundleInfoList) {
+		// TODO Auto-generated method stub
+		return atmJiaChaoBusiness.getBundleInfo(sendBundleInfoList);
 	}
 
 }

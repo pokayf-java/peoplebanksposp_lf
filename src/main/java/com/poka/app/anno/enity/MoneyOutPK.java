@@ -1,8 +1,12 @@
 package com.poka.app.anno.enity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.poka.app.util.TimestampAdapter;
 
 /**
  * 网点配钞
@@ -15,14 +19,14 @@ public class MoneyOutPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String netId;
 	private String scanId;
-	private String bagCode;
+	private Timestamp operTime;
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof MoneyOutPK) {
 			MoneyOutPK pk = (MoneyOutPK) obj;
-			if (pk.getBagCode().equals(this.getBagCode()) && pk.getScanId().equals(this.scanId)
-					&& pk.getNetId().equals(this.netId)) {
+			if (pk.getNetId().equals(this.netId) && pk.getScanId().equals(this.scanId) && 
+					pk.getOperTime().equals(this.operTime)) {
 				return true;
 			}
 		}
@@ -31,18 +35,17 @@ public class MoneyOutPK implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return (this.getNetId() + this.getBagCode() + this.getScanId()).hashCode();
+		return (this.getNetId() + this.getOperTime()+ this.getScanId()).hashCode();
 	}
 
-	@Column(name = "BagCode", length = 20)
-	public String getBagCode() {
-		return bagCode;
+	@Column(name = "OPERTIME")
+	@XmlJavaTypeAdapter(TimestampAdapter.class)
+	public Timestamp getOperTime() {
+		return operTime;
 	}
-
-	public void setBagCode(String bagCode) {
-		this.bagCode = bagCode;
+	public void setOperTime(@XmlJavaTypeAdapter(TimestampAdapter.class) Timestamp operTime) {
+		this.operTime = operTime;
 	}
-
 	@Column(name = "NETID", length = 20)
 	public String getNetId() {
 		return netId;

@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.poka.app.util.TimestampAdapter;
 
 /**
  * 网点配钞
@@ -53,7 +56,6 @@ public class MoneyOut implements Serializable{
 		this.scanId = scanId;
 	}
 	
-	@Id
 	@Column(name = "BAGCODE", length = 20)
 	public String getBagCode() {
 		return bagCode;
@@ -78,11 +80,13 @@ public class MoneyOut implements Serializable{
 		this.operatorId = operatorId;
 	}
 	
+	@Id
 	@Column(name = "OPERTIME")
+	@XmlJavaTypeAdapter(TimestampAdapter.class)
 	public Timestamp getOperTime() {
 		return operTime;
 	}
-	public void setOperTime(Timestamp operTime) {
+	public void setOperTime(@XmlJavaTypeAdapter(TimestampAdapter.class) Timestamp operTime) {
 		this.operTime = operTime;
 	}
 	
@@ -110,11 +114,12 @@ public class MoneyOut implements Serializable{
 		this.toCounterUser = toCounterUser;
 	}
 	
-	@Column(name = "toCounterDate")
+	@Column(name = "TOCOUNTERDATE")
+	@XmlJavaTypeAdapter(TimestampAdapter.class)
 	public Timestamp getToCounterDate() {
 		return toCounterDate;
 	}
-	public void setToCounterDate(Timestamp toCounterDate) {
+	public void setToCounterDate(@XmlJavaTypeAdapter(TimestampAdapter.class) Timestamp toCounterDate) {
 		this.toCounterDate = toCounterDate;
 	}
 	
@@ -127,10 +132,11 @@ public class MoneyOut implements Serializable{
 	}
 	
 	@Column(name = "NETRECEIVEDATE")
+	@XmlJavaTypeAdapter(TimestampAdapter.class)
 	public Timestamp getNetReceiveDate() {
 		return netReceiveDate;
 	}
-	public void setNetReceiveDate(Timestamp netReceiveDate) {
+	public void setNetReceiveDate(@XmlJavaTypeAdapter(TimestampAdapter.class) Timestamp netReceiveDate) {
 		this.netReceiveDate = netReceiveDate;
 	}
 	

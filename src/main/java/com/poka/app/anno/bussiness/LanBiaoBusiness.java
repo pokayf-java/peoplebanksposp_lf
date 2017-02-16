@@ -40,7 +40,7 @@ public class LanBiaoBusiness {
 			}
 			numSize = dataList.size();
 		}
-		logger.info("银行("+bankNo+")核心业务数据同步成功...**"+PokaDateUtil.getNow()+"**");
+		logger.info("银行("+bankNo+")核心业务数据同步成功...**[执行时间：" + PokaDateUtil.getNow() + "]**");
 		logger.info("共计"+numSize +"条.");
 		return true;
 	}
@@ -53,7 +53,7 @@ public class LanBiaoBusiness {
 			}
 			numSize = dataList.size();
 		}
-		logger.info("核心业务信息券别明细同步成功...**"+PokaDateUtil.getNow()+"**");
+		logger.info("核心业务信息券别明细同步成功...**[执行时间：" + PokaDateUtil.getNow() + "]**");
 		logger.info("共计"+numSize +"条.");
 		return true;
 	}

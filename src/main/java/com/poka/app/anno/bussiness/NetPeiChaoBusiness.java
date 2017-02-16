@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 
 import com.poka.app.anno.base.service.impl.MoneyOutService;
 import com.poka.app.anno.enity.MoneyOut;
+import com.poka.app.util.PokaDateUtil;
 
 @Component
-public class ATMJiaChBusiness {
-	Logger logger = Logger.getLogger(ATMJiaChBusiness.class);
+public class NetPeiChaoBusiness {
+	Logger logger = Logger.getLogger(NetPeiChaoBusiness.class);
 	
 	private MoneyOutService moneyOutService;
 	@Autowired
@@ -30,6 +31,7 @@ public class ATMJiaChBusiness {
 			}
 			numSize = dataList.size();
 		}
+		logger.info("网点配钞数据同步成功...**[执行时间：" + PokaDateUtil.getNow() + "]**");
 		logger.info("共计"+numSize +"条.");
 		return true;
 	}
