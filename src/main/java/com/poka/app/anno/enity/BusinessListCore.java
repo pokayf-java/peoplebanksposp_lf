@@ -35,6 +35,7 @@ public class BusinessListCore {
 	private Character channel;			//渠道类型
 	private String remark;				//备注
 	private Timestamp insertDate;		//插入时间
+	private String hangYeLB;			//行业类别
 	
 	@Id
 	@Column(name = "ID")
@@ -165,6 +166,14 @@ public class BusinessListCore {
 	}
 	public void setZhaiYoms(String zhaiYoms) {
 		this.zhaiYoms = zhaiYoms;
+	}
+	
+	@Column(name ="HANGYELB",length = 4)
+	public String getHangYeLB() {
+		return hangYeLB;
+	}
+	public void setHangYeLB(String hangYeLB) {
+		this.hangYeLB = hangYeLB;
 	}
 
 }
