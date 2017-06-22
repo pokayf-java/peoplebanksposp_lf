@@ -21,6 +21,7 @@ public class InitConstant {
 			ConstantUtil.perInfoFlag = argsConfigUtil.getPerInfoFlag();
 			ConstantUtil.paymentFlag = argsConfigUtil.getPaymentFlag();
 			ConstantUtil.qryApplyFlag = argsConfigUtil.getQryApplyFlag();
+			ConstantUtil.quKuanFlag = argsConfigUtil.getQuKuanFlag();
 		}
 	}
 }

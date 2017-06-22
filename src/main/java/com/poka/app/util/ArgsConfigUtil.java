@@ -106,4 +106,13 @@ public class ArgsConfigUtil {
 	public String getBagInfoFlag(){
 		return p.getProperty("bagInfoFlag");
 	}
+	
+	/**
+	 * 获取人行下发取款信息启用标识
+	 * @return
+	 */
+	public String getQuKuanFlag() {
+		return p.getProperty("quKuanFlag");
+	}
+	
 }

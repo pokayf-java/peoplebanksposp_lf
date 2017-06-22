@@ -72,7 +72,7 @@ public class BankCheckDailyRepList implements Serializable{
 	}
 	
 	@Column(name = "LOGDATE")
-	public Timestamp getLogDate() {
+	private Timestamp getLogDate() {
 		return logDate;
 	}
 	public void setLogDate(Timestamp logDate) {

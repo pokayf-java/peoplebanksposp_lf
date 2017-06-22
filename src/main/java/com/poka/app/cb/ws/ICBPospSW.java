@@ -7,6 +7,7 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
+import com.poka.app.anno.enity.BagInfo;
 import com.poka.app.anno.enity.MonRule;
 import com.poka.app.anno.enity.SendFile;
 import com.poka.app.vo.AppointmenResult;
@@ -25,4 +26,10 @@ public interface ICBPospSW {
 	@WebMethod(operationName = "sendFileData")
 	@WebResult(name = "result")
 	public boolean sendFileData(@WebParam(name = "sendFileList") List<SendFile> sendFileList);
+	
+	/*取款信息下发商行*/
+	@WebMethod(operationName = "sendBagInfoData")
+	@WebResult(name = "result")
+	public boolean sendBagInfoData(@WebParam(name = "bagInfoList") List<BagInfo> bagInfoList);
+	
 }

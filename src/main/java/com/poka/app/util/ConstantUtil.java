@@ -40,5 +40,6 @@ public class ConstantUtil {
 	public static String paymentFlag;
 	public static String qryApplyFlag;
 	public static String bagInfoFlag;
+	public static String quKuanFlag;
 	
 }
