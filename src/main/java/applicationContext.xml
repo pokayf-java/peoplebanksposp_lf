@@ -136,6 +136,7 @@
 	<bean id="quartzJob" class="com.poka.app.quartz.JobQuartz"></bean>
 	<bean id="doDeleteLogsJob" class="com.poka.app.quartz.DoDeleteLogsJob"></bean>
 	<bean id="sendFileJob" class="com.poka.app.quartz.SendFileJob"></bean>
+	<bean id="sendBagInfoJob" class="com.poka.app.quartz.SendBagInfoJob"></bean>
 	<!-- 定义调用对象和调用对象的方法 -->
 
 
@@ -154,6 +155,12 @@
 	<bean id="jobSendFileDetail"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="sendFileJob" />
+		<property name="targetMethod" value="work" />
+	</bean>
+	
+	<bean id="jobSendBagInfoDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="sendBagInfoJob" />
 		<property name="targetMethod" value="work" />
 	</bean>
 	<!-- 定义触发时间 -->
@@ -191,6 +198,15 @@
 		<!-- repeat every 3600 seconds -->
 		<property name="cronExpression" value="0 0 1 * * ?"></property>
 	</bean>
+	
+	<bean id="sendBagInfoTrigger"
+		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<!-- see the example of method invoking job above -->
+		<property name="jobDetail" ref="jobSendBagInfoDetail" />
+		<property name="startDelay" value="1000" />
+		<!--每5分钟执行一次 -->
+		<property name="repeatInterval" value="300000" />
+	</bean>
 
 	<bean id="startQuertz" lazy-init="false" autowire="no"
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -199,6 +215,7 @@
 				<ref bean="simpleTrigger" />
 				<ref bean="doDelLogsTrigger" />
 				<ref bean="sendFileTrigger" />
+				<ref bean="sendBagInfoTrigger" />
 			</list>
 		</property>
 		<property name="jobFactory">

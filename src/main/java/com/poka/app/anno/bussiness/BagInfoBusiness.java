@@ -91,14 +91,14 @@ public class BagInfoBusiness {
 							logger.info("连接服务器失败!");
 						}
 						if (result) {
-							logger.info("银行号:[" + bankNo + "]-->ip:[" + bankIp + "] 取款据同步成功");
+							logger.info("银行号:[" + bankNo + "]-->ip:[" + bankIp + "] 取款据同步成功**" + PokaDateUtil.getNow() + "**");
 							logger.info("总计:" + bagInfoList.size() + "条");
 							for (BagInfo bagInfo : bagInfoList) {
 								bagInfo.setWriteStatus("0");
 								bagInfoService.save(bagInfo);
 							}
 						} else {
-							logger.info("银行号:[" + bankNo + "]-->ip:[" + bankIp + "] 取款数据同步失败");
+							logger.info("银行号:[" + bankNo + "]-->ip:[" + bankIp + "] 取款数据同步失败**" + PokaDateUtil.getNow() + "**");
 						}
 						try {
 							Thread.sleep(5000);
@@ -107,7 +107,7 @@ public class BagInfoBusiness {
 						}
 					}
 				} else {
-					logger.info("银行号:[" + bankNo + "]-->ip:[" + bankIp + "] 无取款数据同步");
+					logger.info("银行号:[" + bankNo + "]-->ip:[" + bankIp + "] 无取款数据同步**" + PokaDateUtil.getNow() + "**");
 				}
 			}
 		}
