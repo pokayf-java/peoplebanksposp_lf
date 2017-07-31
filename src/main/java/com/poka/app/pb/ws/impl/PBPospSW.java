@@ -6,7 +6,6 @@ import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.poka.app.anno.bussiness.NetPeiChaoBusiness;
 import com.poka.app.anno.bussiness.AppointmentBusiness;
 import com.poka.app.anno.bussiness.AtmJiaChaoBusiness;
 import com.poka.app.anno.bussiness.BagInfoBusiness;
@@ -16,9 +15,11 @@ import com.poka.app.anno.bussiness.ChaoXJiaChaoBusiness;
 import com.poka.app.anno.bussiness.LanBiaoBusiness;
 import com.poka.app.anno.bussiness.NetCheckDailyRepBakBusiness;
 import com.poka.app.anno.bussiness.NetCheckDailyRepBusiness;
+import com.poka.app.anno.bussiness.NetPeiChaoBusiness;
 import com.poka.app.anno.bussiness.PaymentBusiness;
 import com.poka.app.anno.bussiness.PerInfoAndBranchBusiness;
 import com.poka.app.anno.bussiness.QryApplyBusiness;
+import com.poka.app.anno.bussiness.ZhengkunqkBusiness;
 import com.poka.app.anno.enity.BagInfo;
 import com.poka.app.anno.enity.BankCheckDailyRepBak;
 import com.poka.app.anno.enity.BankCheckDailyRepList;
@@ -30,6 +31,7 @@ import com.poka.app.anno.enity.MoneyOut;
 import com.poka.app.anno.enity.NetCheckDailyRepBak;
 import com.poka.app.anno.enity.NetCheckDailyRepList;
 import com.poka.app.anno.enity.QryApply;
+import com.poka.app.anno.enity.WithDrawInfo;
 import com.poka.app.pb.ws.IPBPospSW;
 import com.poka.app.vo.AppointmentVo;
 import com.poka.app.vo.PaymentVo;
@@ -50,9 +52,15 @@ public class PBPospSW implements IPBPospSW {
 	private NetPeiChaoBusiness netPeiChaoBusiness;
 	private AtmJiaChaoBusiness atmJiaChaoBusiness;
 	private ChaoXJiaChaoBusiness chaoXJiaChaoBusiness;
+	private ZhengkunqkBusiness zhengkunqkBusiness;
 	
 	
 
+	@Autowired
+	public void setZhengkunqkBusiness(ZhengkunqkBusiness zhengkunqkBusiness) {
+		this.zhengkunqkBusiness = zhengkunqkBusiness;
+	}
+	
 	@Autowired
 	public void setAtmJiaChaoBusiness(AtmJiaChaoBusiness atmJiaChaoBusiness) {
 		this.atmJiaChaoBusiness = atmJiaChaoBusiness;
@@ -213,6 +221,12 @@ public class PBPospSW implements IPBPospSW {
 	public boolean sendBundleInfo(List<BundleInfo> sendBundleInfoList) {
 		// TODO Auto-generated method stub
 		return atmJiaChaoBusiness.getBundleInfo(sendBundleInfoList);
+	}
+
+	@Override
+	public boolean sendWithDrawInfoInfo(List<WithDrawInfo> sendWithDrawInfoList) {
+		// TODO Auto-generated method stub
+		return zhengkunqkBusiness.getWithDrawInfo(sendWithDrawInfoList);
 	}
 
 }

@@ -111,7 +111,7 @@ public class BusinessListCore {
 		this.accountNo = accountNo;
 	}
 	
-	@Column(name = "ACCOUNTNAME",length = 30)
+	@Column(name = "ACCOUNTNAME",length = 100)
 	public String getAccountName() {
 		return accountName;
 	}
