@@ -77,7 +77,7 @@ public class BaseDao<T, PK extends Serializable> implements IBaseDao<T, PK> {
 	public void save(final T entity) {
 		getSession().saveOrUpdate(entity);
 	}
-
+	
 	public void saveLosts(List<T> list) {
 		int i = 0;
 		for (T o : list) {

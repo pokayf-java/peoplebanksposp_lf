@@ -1,5 +1,5 @@
-Version:V4.0.6
+Version:V4.0.7
 Province:HB
 City:LF
 Data:Oracle
-Build:2017-07-28
+Build:2017年9月19日

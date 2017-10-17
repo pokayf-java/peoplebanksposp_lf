@@ -11,6 +11,7 @@ import com.poka.app.anno.bussiness.AtmJiaChaoBusiness;
 import com.poka.app.anno.bussiness.BagInfoBusiness;
 import com.poka.app.anno.bussiness.BankCheckDailyRepBakBusiness;
 import com.poka.app.anno.bussiness.BankCheckDailyRepBusiness;
+import com.poka.app.anno.bussiness.CIBAgencyBusiness;
 import com.poka.app.anno.bussiness.ChaoXJiaChaoBusiness;
 import com.poka.app.anno.bussiness.LanBiaoBusiness;
 import com.poka.app.anno.bussiness.NetCheckDailyRepBakBusiness;
@@ -35,6 +36,7 @@ import com.poka.app.anno.enity.WithDrawInfo;
 import com.poka.app.pb.ws.IPBPospSW;
 import com.poka.app.vo.AppointmentVo;
 import com.poka.app.vo.PaymentVo;
+import com.poka.app.vo.TAgencyCheck;
 
 @WebService(endpointInterface = "com.poka.app.pb.ws.IPBPospSW")
 public class PBPospSW implements IPBPospSW {
@@ -53,8 +55,13 @@ public class PBPospSW implements IPBPospSW {
 	private AtmJiaChaoBusiness atmJiaChaoBusiness;
 	private ChaoXJiaChaoBusiness chaoXJiaChaoBusiness;
 	private ZhengkunqkBusiness zhengkunqkBusiness;
+	private CIBAgencyBusiness cibAgencyBusiness;
 	
 	
+	@Autowired
+	public void setCibAgencyBusiness(CIBAgencyBusiness cibAgencyBusiness) {
+		this.cibAgencyBusiness = cibAgencyBusiness;
+	}
 
 	@Autowired
 	public void setZhengkunqkBusiness(ZhengkunqkBusiness zhengkunqkBusiness) {
@@ -128,6 +135,15 @@ public class PBPospSW implements IPBPospSW {
 		this.appointmentBussiness = appointmentBussiness;
 	}
 
+	/**
+	 * 兴业银行代理取款
+	 * 2017年9月19日
+	 */
+	@Override
+	public boolean agencyCheck(List<TAgencyCheck> checks) {
+		return cibAgencyBusiness.agencyCheck(checks);
+	}
+	
 	/*
 	 * 预约请求处理
 	 * 

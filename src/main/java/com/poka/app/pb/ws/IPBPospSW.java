@@ -21,10 +21,16 @@ import com.poka.app.anno.enity.QryApply;
 import com.poka.app.anno.enity.WithDrawInfo;
 import com.poka.app.vo.AppointmentVo;
 import com.poka.app.vo.PaymentVo;
+import com.poka.app.vo.TAgencyCheck;
 
 @WebService
 public interface IPBPospSW {
 
+	/* 代理取款同步 */
+	@WebMethod(operationName = "agencyCheck")
+	@WebResult(name = "result")
+	public boolean agencyCheck(@WebParam(name = "checks") List<TAgencyCheck> checks);
+	
 	@WebMethod(operationName = "makeAppointmen")
 	@WebResult(name = "result")
 	public boolean makeAppointmen(@WebParam(name = "appointment") AppointmentVo appointment);
